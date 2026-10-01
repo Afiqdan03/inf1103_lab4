@@ -88,4 +88,25 @@ def load_inventory():
 
 def process_delivery(running_total, value_to_add):
     
-    return running_total + value_to_add
+    return running_total + 
+
+def save_inventory(order_list):
+    
+    root_path = os.path.dirname(os.path.abspath(__file__))
+    
+    file_path = os.path.join(root_path, "orders.txt")
+    
+    with open(file_path, "w") as data_file:
+        
+        for order_num, product_title, item_qty in order_list:
+            
+            data_file.write(f"{order_num}, {product_title}, {item_qty}\n")
+            
+    print("Order successfully saved to orders.txt.")
+
+
+def generate_report(processed_count, failed_count):
+    
+    print(f"Total Deliveries Processed: {processed_count}")
+    
+    print(f"Number of Failed/Rejected Entries: {failed_count}")
