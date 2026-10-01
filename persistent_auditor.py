@@ -110,3 +110,54 @@ def generate_report(processed_count, failed_count):
     print(f"Total Deliveries Processed: {processed_count}")
     
     print(f"Number of Failed/Rejected Entries: {failed_count}")
+    
+def main():
+    
+    order_list = load_inventory()
+
+    if order_list:
+        upcoming_order_id = order_list[-1][0] + 1
+    else:
+        upcoming_order_id = 1001
+
+    stock_total = sum(amount for _, _, amount in order_list)
+    
+    successful_deliveries = len(order_list)
+    
+    rejected_entries = 0
+
+    while True:
+        
+        user_response = get_valid_input()
+
+        if user_response == "quit":
+            
+            save_inventory(order_list)
+            
+            generate_report(successful_deliveries, rejected_entries)
+            
+            break
+
+        if user_response is None:
+            
+            rejected_entries += 1
+            
+            continue
+
+        product_title, delivery_qty = user_response
+
+        order_num = upcoming_order_id
+        
+        upcoming_order_id += 1
+        
+        order_list.append((order_num, product_title, delivery_qty))
+
+        print(f"\nNew Order Added:\n{order_num},{product_title},{delivery_qty}\n")
+
+        stock_total = process_delivery(stock_total, delivery_qty)
+        
+        successful_deliveries += 1
+
+
+if __name__ == "__main__":
+    main()
