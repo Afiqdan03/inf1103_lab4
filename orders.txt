@@ -1,2 +1,4 @@
 1001, & C:\Users\user\AppData\Local\Programs\Python\Python313\python.exe "c:/Users/user/Downloads/1103 week 5 lab/persistent_auditor.py", 10
 1002, cheese, 10000000000
+1003, patties, 20
+1004, fatties 30, 20
