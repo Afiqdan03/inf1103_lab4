@@ -57,7 +57,7 @@ def load_inventory():
     except (ValueError, IndexError):
         return order_list
     
-    def get_valid_input():
+def get_valid_input():
     
     product_title = input("Enter Product Name: ")
 
@@ -88,7 +88,7 @@ def load_inventory():
 
 def process_delivery(running_total, value_to_add):
     
-    return running_total + 
+    return running_total + value_to_add
 
 def save_inventory(order_list):
     
